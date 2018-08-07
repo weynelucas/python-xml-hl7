@@ -7,9 +7,15 @@ RECV_BUFFER = 4096
 DEFAULT_PORT = 9100
 
 
-class HL7Client(object):
+class AlfamedClient(object):
     """
     A basic, blocking, HL7 client based upon `socket`.
+    
+    Connects to a network server (communication port 9100) started 
+    by an ALFAMED patient monitor via TCP/IP connections.
+
+    Refresh `socket` instance after any transmission to prevent 
+    connections to being cutt off by ALFAMED monitor server
     """
     def __init__(self, host, port=DEFAULT_PORT):
         self.connected = False
