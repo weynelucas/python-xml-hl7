@@ -14,8 +14,8 @@ class AlfamedClient(object):
     Connects to a network server (communication port 9100) started 
     by an ALFAMED patient monitor via TCP/IP connections.
 
-    Refresh `socket` instance after any transmission to prevent 
-    connections to being cutt off by ALFAMED monitor server
+    Refresh `socket` instance after any transmission (method `read_message`) 
+    to prevent connections to being cutt off by ALFAMED monitor server
     """
     def __init__(self, host, port=DEFAULT_PORT):
         self.connected = False
