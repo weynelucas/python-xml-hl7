@@ -9,6 +9,13 @@ You can install this library using pip:
 pip install python-xml-hl7
 ```
 
+or from the git repository:
+```
+git clone https://github.com/weynelucas/python-xml-hl7.git
+cd python-hl7
+python setup.py install
+```
+
 ## Quickstart
 
 As an example, let’s create a HL7 message:
@@ -141,7 +148,7 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 
 ## Testing
 
-You can run tests locally using `unittest`
+You can run tests locally using `unittest` module
 
 ```
 cd python-xml-hl7
