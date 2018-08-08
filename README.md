@@ -82,14 +82,39 @@ A `Segment` instance wraps a serie of `Field` objects, you can iterate over them
  '62'
 ```
 
-There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and `OBX`. Each of them has helper properties to retrieve data from its respective HL7 segment without iterate over his `Field` objects:
+There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and `OBX`. Each of them has helper methods to retrieve data from its respective HL7 segment without iterate over his `Field` objects:
 
 ```python
->> for obx in h['OBX']: print("%s => %s %s" % (obx.identifier, obx.value, obx.units))
-SPO2 => 96 %
-PR => 68 bpm
-SYS => 131 mmHg
-DIA => 85 mmHg
-MAP => 100 mmHg
-NIBP_PR => 73 bpm
+>> obx = h['OBX'][3] # 3rd OBX instance of messsage
+>> (
+    obx.identifier,
+    obx.value_type,
+    obx.value,
+    obx.units,
+    obx.reference_range,
+    obx.datetime
+)
+('DIA', 'NM', 85, 'mmHg', (50, 90), datetime.datetime(2018, 7, 3, 11, 17, 13))
+
+>> pv1 = h['PV1'][0] # PV1 instance of messsage
+>> (
+    pv1.patient_class,
+    pv1.patient_class_display,
+    pv1.patient_type,
+    pv1.patient_type_display,
+    pv1.assigned_patient_location,
+    pv1.admit_datetime
+)
+('U', 'Unknown', 'adult', 'Adult', None, datetime.datetime(2018, 7, 26, 18, 13, 46))
+
+>> msh = h['MSH'][0] # MSH instance of message
+>> (
+    msh.field_separator,
+    msh.encoding_chars,
+    msh.sending_application,
+    msh.datetime,
+    msh.version,
+    msh.message_type
+)
+('|', '^~\\&', 'hospital', datetime.datetime(2018, 7, 3, 11, 17, 43), '2.3.1', ('ORU', 'R01'))
 ```
