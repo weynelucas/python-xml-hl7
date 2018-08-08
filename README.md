@@ -153,14 +153,13 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 from hl7.xml.client import AlfamedClient
 
 client = AlfamedClient('169.254.215.35') # Default communication port is 9100
-client.read_message()  # By default, HL7 (in XML) messages are converted into a Message object
+client.read_message()  # By default, HL7 messages are converted into Message objects
 client.read_message(parse_message=False) # Returns the original HL7 message as string
 ```
 
-Invalid host addresses raises `AtributteError`
+Invalid host addresses when instantiate `AlfamedClient` objects raises `AtributteError`
 
 ## Testing
-
 You can run tests locally using `unittest` module
 
 ```
