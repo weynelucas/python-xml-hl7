@@ -7,6 +7,7 @@ with open('README.md', encoding='utf-8') as f:
 
 
 version = '1.0.0'
+repository = 'https://github.com/weynelucas/python-xml-hl7'
 
 
 setup(
@@ -18,8 +19,8 @@ setup(
   long_description_content_type='text/markdown',
   author = "Lucas Weyne",
   author_email = "weynelucas@gmail.com",
-  url = "https://github.com/weynelucas/python-xml-hl7",
-  download_url = "https://github.com/weynelucas/python-xml-hl7/archive/%s.tar.gz" % version,
+  url = repository,
+  download_url = "%s/archive/%s.tar.gz" % (repository, version),
   keywords = "hl7 xml python-hl7 python-xml-hl7",
   classifiers=[ 
     'Development Status :: 3 - Alpha',
