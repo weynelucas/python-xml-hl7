@@ -41,7 +41,7 @@ h = parse(message)
 This command returns a `Message` instance, wrapping a series of `Segment` objects. Is possible iterate over segments or match for specific segments:
 
 ```python
->> list(h)
+>>> list(h)
 [<hl7.xml.containers.MSH at 0x52cb668>,
  <hl7.xml.containers.PID at 0x52cb6d8>,
  <hl7.xml.containers.PV1 at 0x52cb828>,
@@ -53,10 +53,10 @@ This command returns a `Message` instance, wrapping a series of `Segment` object
  <hl7.xml.containers.OBX at 0x52cb978>,
  <hl7.xml.containers.OBX at 0x52cb9b0>]
 
->> h[0]
+>>> h[0]
 <hl7.xml.containers.MSH at 0x52d2080>
 
->> h['OBX']
+>>> h['OBX']
 [<hl7.xml.containers.OBX at 0x52cbd30>,
  <hl7.xml.containers.OBX at 0x5265400>,
  <hl7.xml.containers.OBX at 0x5265668>,
@@ -68,26 +68,27 @@ This command returns a `Message` instance, wrapping a series of `Segment` object
 A `Segment` instance wraps a serie of `Field` objects, you can iterate over them:
 
 ```python
->> list(h[5])
+>>> list(h[5])
 [<hl7.xml.containers.Field at 0x502b208>,
  <hl7.xml.containers.Field at 0x502b198>,
  <hl7.xml.containers.Field at 0x502b240>,
  <hl7.xml.containers.Field at 0x502b048>,
  <hl7.xml.containers.Field at 0x502b940>]
 
->> h[5][0].value
+>>> h[5][0].value
 'NM'
 
->> h[5][2].value
+>>> h[5][2].value
 '62'
 ```
 
 There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and `OBX`. Each of them has helper methods to retrieve data from its respective HL7 segment without iterate over his `Field` objects.
 
 #### MSH
+
 ```python
->> msh = h['MSH'][0] 
->> (msh.field_separator,
+>>> msh = h['MSH'][0]
+>>> (msh.field_separator,
     msh.encoding_chars,
     msh.sending_application,
     msh.datetime,
@@ -98,8 +99,8 @@ There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and
 
 #### PID
 ``` python
->> pid = h['PID'][0]
->> (pid.id,
+>>> pid = h['PID'][0]
+>>> (pid.id,
     pid.id_list,
     pid.name,
     pid.birthdate,
@@ -109,8 +110,8 @@ There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and
 
 #### PV1
 ```python
->> pv1 = h['PV1'][0]
->> (pv1.patient_class,
+>>> pv1 = h['PV1'][0]
+>>> (pv1.patient_class,
     pv1.patient_class_display,
     pv1.patient_type,
     pv1.patient_type_display,
@@ -121,15 +122,15 @@ There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and
 
 #### OBR
 ```python
->> obr = h['OBR'][0]
->> obr.datetime
+>>> obr = h['OBR'][0]
+>>> obr.datetime
 datetime.datetime(2018, 7, 3, 11, 17, 43)
 ```
 
 #### OBX
 ```python
->> obx = h['OBX'][3] # 3rd instance
->> (obx.identifier,
+>>> obx = h['OBX'][3] # 3rd instance
+>>> (obx.identifier,
     obx.value_type,
     obx.value,
     obx.units,
@@ -137,6 +138,9 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
     obx.datetime)
 ('DIA', 'NM', 85, 'mmHg', (50, 90), datetime.datetime(2018, 7, 3, 11, 17, 13))
 ```
+
+## Testing
+To run tests locally
 
 ## Notes
 
