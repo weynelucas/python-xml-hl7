@@ -12,7 +12,7 @@ pip install python-xml-hl7
 or from the git repository:
 ```
 git clone https://github.com/weynelucas/python-xml-hl7.git
-cd python-hl7
+cd python-xml-hl7
 python setup.py install
 ```
 
