@@ -148,8 +148,18 @@ cd python-xml-hl7
 python -m unittest tests
 ```
 
+If all the tests pass you will see a success message like this
+```
+................
+----------------------------------------------------------------------
+Ran 16 tests in 0.007s
+
+OK
+```
+
 ## Notes
 
+* For any suggestion, feature or bug fix, you can report a issue [here](https://github.com/weynelucas/python-xml-hl7/issues). Or submit a pull request
 * For handle HL7 messages in original stream format, use solutions like [python-hl7](http://python-hl7.readthedocs.io/en/latest/) or [HL7apy](http://hl7apy.org/)
 
 ## Release Notes
