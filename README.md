@@ -84,9 +84,8 @@ A `Segment` instance wraps a serie of `Field` objects, you can iterate over them
 
 There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and `OBX`. Each of them has helper methods to retrieve data from its respective HL7 segment without iterate over his `Field` objects.
 
+#### MSH
 ```python
-
-# MSH
 >> msh = h['MSH'][0] 
 >> (msh.field_separator,
     msh.encoding_chars,
@@ -95,8 +94,10 @@ There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and
     msh.version,
     msh.message_type)
 ('|', '^~\\&', 'hospital', datetime.datetime(2018, 7, 3, 11, 17, 43), '2.3.1', ('ORU', 'R01'))
+```
 
-# PID
+#### PID
+``` python
 >> pid = h['PID'][0]
 >> (pid.id,
     pid.id_list,
@@ -104,7 +105,10 @@ There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and
     pid.birthdate,
     pid.gender)
 ('shenzhen', '1', 'libang', datetime.datetime(2009, 10, 10, 0, 0), 'M')
+```
 
+#### PV1
+```python
 # PV1
 >> pv1 = h['PV1'][0]
 >> (pv1.patient_class,
@@ -114,13 +118,17 @@ There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and
     pv1.assigned_patient_location,
     pv1.admit_datetime)
 ('U', 'Unknown', 'adult', 'Adult', None, datetime.datetime(2018, 7, 26, 18, 13, 46))
+```
 
-# OBR
+#### OBR
+```python
 >> obr = h['OBR'][0]
 >> obr.datetime
 datetime.datetime(2018, 7, 3, 11, 17, 43)
+```
 
-# OBX
+#### OBX
+```python
 >> obx = h['OBX'][3] # 3rd instance
 >> (obx.identifier,
     obx.value_type,
