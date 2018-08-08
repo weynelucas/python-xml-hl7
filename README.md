@@ -38,7 +38,7 @@ from hl7.xml import parse
 h = parse(message)
 ```
 
-This command returns a `hl7.xml.containers.Message` instance, wrapping a series of `hl7.xml.containers.Segment` objects. Is possible iterate over segments or match for specific segments:
+This command returns a `Message` instance, wrapping a series of `Segment` objects. Is possible iterate over segments or match for specific segments:
 
 ```python
 >> list(h)
@@ -63,4 +63,41 @@ This command returns a `hl7.xml.containers.Message` instance, wrapping a series 
  <hl7.xml.containers.OBX at 0x52655c0>,
  <hl7.xml.containers.OBX at 0x5265588>,
  <hl7.xml.containers.OBX at 0x52653c8>]
+```
+
+A `Segment` instance wraps a serie of `Field` objects, you can iterate over them:
+
+```python
+>> list(h[5])
+[<hl7.xml.containers.Field at 0x502b208>,
+ <hl7.xml.containers.Field at 0x502b198>,
+ <hl7.xml.containers.Field at 0x502b240>,
+ <hl7.xml.containers.Field at 0x502b048>,
+ <hl7.xml.containers.Field at 0x502b940>]
+
+ >> h[5][0].value
+'NM'
+
+ >> h[5][2].value
+ '62'
+```
+
+There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and `OBX`. Each of them has helper methods to retrieve data from its respective HL7 segment without iterate over his `Field` objects:
+
+```python
+>> obx = h['OBX'][3] # 3rd OBX instance of messsage
+>> (obx.identifier, obx.value_type, obx.value, obx.units, obx.reference_range, obx.datetime) 
+('DIA', 'NM', 85, 'mmHg', (50, 90), datetime.datetime(2018, 7, 3, 11, 17, 13))
+
+>> pv1 = h['PV1'][0]
+>> (pv1.patient_class, pv1.patient_class_display, 
+ pv1.patient_type, pv1.patient_type_display, 
+ pv1.assigned_patient_location, 
+ pv1.admit_datetime)
+ ('U',
+ 'Unknown',
+ 'adult',
+ 'Adult',
+ None,
+ datetime.datetime(2018, 7, 26, 18, 13, 46))
 ```
