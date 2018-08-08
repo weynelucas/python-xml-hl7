@@ -85,9 +85,11 @@ A `Segment` instance wraps a serie of `Field` objects, you can iterate over them
 There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and `OBX`. Each of them has helper properties to retrieve data from its respective HL7 segment without iterate over his `Field` objects:
 
 ```python
->> obx = h['OBX'][3] # 3rd OBX instance of messsage
->> obx.value
-85
->> obx.units
-'mmHg'
+>> for obx in h['OBX']: print("%s => %s %s" % (obx.identifier, obx.value, obx.units))
+SPO2 => 96 %
+PR => 68 bpm
+SYS => 131 mmHg
+DIA => 85 mmHg
+MAP => 100 mmHg
+NIBP_PR => 73 bpm
 ```
