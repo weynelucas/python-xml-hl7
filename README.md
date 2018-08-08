@@ -109,7 +109,6 @@ There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and
 
 #### PV1
 ```python
-# PV1
 >> pv1 = h['PV1'][0]
 >> (pv1.patient_class,
     pv1.patient_class_display,
@@ -138,3 +137,12 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
     obx.datetime)
 ('DIA', 'NM', 85, 'mmHg', (50, 90), datetime.datetime(2018, 7, 3, 11, 17, 13))
 ```
+
+## Notes
+
+* For handle HL7 messages in original stream format, use solutions like [python-hl7](http://python-hl7.readthedocs.io/en/latest/) or [HL7apy](http://hl7apy.org/)
+
+
+## Release Notes
+
+* 1.0.0 - First release
