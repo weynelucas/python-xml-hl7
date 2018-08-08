@@ -89,11 +89,11 @@ There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and
 ```python
 >>> msh = h['MSH'][0]
 >>> (msh.field_separator,
-    msh.encoding_chars,
-    msh.sending_application,
-    msh.datetime,
-    msh.version,
-    msh.message_type)
+     msh.encoding_chars,
+     msh.sending_application,
+     msh.datetime,
+     msh.version,
+     msh.message_type)
 ('|', '^~\\&', 'hospital', datetime.datetime(2018, 7, 3, 11, 17, 43), '2.3.1', ('ORU', 'R01'))
 ```
 
@@ -101,10 +101,10 @@ There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and
 ``` python
 >>> pid = h['PID'][0]
 >>> (pid.id,
-    pid.id_list,
-    pid.name,
-    pid.birthdate,
-    pid.gender)
+     pid.id_list,
+     pid.name,
+     pid.birthdate,
+     pid.gender)
 ('shenzhen', '1', 'libang', datetime.datetime(2009, 10, 10, 0, 0), 'M')
 ```
 
@@ -112,11 +112,11 @@ There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and
 ```python
 >>> pv1 = h['PV1'][0]
 >>> (pv1.patient_class,
-    pv1.patient_class_display,
-    pv1.patient_type,
-    pv1.patient_type_display,
-    pv1.assigned_patient_location,
-    pv1.admit_datetime)
+     pv1.patient_class_display,
+     pv1.patient_type,
+     pv1.patient_type_display,
+     pv1.assigned_patient_location,
+     pv1.admit_datetime)
 ('U', 'Unknown', 'adult', 'Adult', None, datetime.datetime(2018, 7, 26, 18, 13, 46))
 ```
 
@@ -131,21 +131,17 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 ```python
 >>> obx = h['OBX'][3] # 3rd instance
 >>> (obx.identifier,
-    obx.value_type,
-    obx.value,
-    obx.units,
-    obx.reference_range,
-    obx.datetime)
+     obx.value_type,
+     obx.value,
+     obx.units,
+     obx.reference_range,
+     obx.datetime)
 ('DIA', 'NM', 85, 'mmHg', (50, 90), datetime.datetime(2018, 7, 3, 11, 17, 13))
 ```
-
-## Testing
-To run tests locally
 
 ## Notes
 
 * For handle HL7 messages in original stream format, use solutions like [python-hl7](http://python-hl7.readthedocs.io/en/latest/) or [HL7apy](http://hl7apy.org/)
-
 
 ## Release Notes
 
