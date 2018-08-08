@@ -139,10 +139,16 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 ('DIA', 'NM', 85, 'mmHg', (50, 90), datetime.datetime(2018, 7, 3, 11, 17, 13))
 ```
 
+## Testing
+
+```
+python -m unittest 
+```
+
 ## Notes
 
 * For handle HL7 messages in original stream format, use solutions like [python-hl7](http://python-hl7.readthedocs.io/en/latest/) or [HL7apy](http://hl7apy.org/)
 
 ## Release Notes
 
-* 1.0.0 - First release
+* 0.1.0 - First release
