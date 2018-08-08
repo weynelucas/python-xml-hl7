@@ -157,7 +157,7 @@ client.read_message()  # By default, HL7 messages are converted into Message obj
 client.read_message(parse_message=False) # Returns the original HL7 message as string
 ```
 
-Invalid host addresses when instantiate `AlfamedClient` objects raises `AtributteError`
+`AlfamedClient` objects instantiated with invalid host addresses will raises `AttributeError`
 
 ## Testing
 You can run tests locally using `unittest` module
