@@ -9,7 +9,6 @@ with open('README.md', encoding='utf-8') as f:
 version = '0.1.0'
 repository = 'https://github.com/weynelucas/python-xml-hl7'
 
-
 setup(
   name = "python-xml-hl7",
   packages = find_packages(),
@@ -21,7 +20,7 @@ setup(
   author_email = "weynelucas@gmail.com",
   url = repository,
   download_url = "%s/archive/%s.tar.gz" % (repository, version),
-  keywords = "hl7 xml python-hl7 python-xml-hl7",
+  keywords = "hl7 health level xml python-hl7 python-xml-hl7 ",
   classifiers=[ 
     'Development Status :: 3 - Alpha',
     'Intended Audience :: Developers',
