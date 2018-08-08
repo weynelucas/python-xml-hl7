@@ -1,3 +1,5 @@
+[![PyPi version](https://img.shields.io/pypi/v/python-xml-hl7.svg)](https://pypi.python.org/pypi/python-xml-hl7)
+
 # python-xml-hl7
 A library for parsing HL7 (version 2.x) messages in XML format into Python objects
 
