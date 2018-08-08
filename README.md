@@ -141,8 +141,11 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 
 ## Testing
 
+You can run tests locally using `unittest`
+
 ```
-python -m unittest 
+cd python-xml-hl7
+python -m unittest tests
 ```
 
 ## Notes
