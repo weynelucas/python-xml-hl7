@@ -146,6 +146,19 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 ('DIA', 'NM', 85, 'mmHg', (50, 90), datetime.datetime(2018, 7, 3, 11, 17, 13))
 ```
 
+## Network client
+`python-xml-hl7` provides a simple network (TCP/IP) client, wich reads HL7 messages from [Alfamed](http://www.alfamed.com/) patient monitors like [VITA 200e](http://www.alfamed.com/monitor-multiparametro-vita-200.html).
+
+```python
+from hl7.xml.client import AlfamedClient
+
+client = AlfamedClient('169.254.215.35') # Default communication port is 9100
+client.read_message()  # By default, HL7 (in XML) messages are converted into a Message object
+client.read_message(parse_message=False) # Returns the original HL7 message as string
+```
+
+Invalid host addresses raises `AtributteError`
+
 ## Testing
 
 You can run tests locally using `unittest` module
