@@ -148,7 +148,7 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 ('DIA', 'NM', 85, 'mmHg', (50, 90), datetime.datetime(2018, 7, 3, 11, 17, 13))
 ```
 
-To find a `OBX` segment or value inside a `Message` by its identifier use `get_obx` and `get_obx_value` methods:
+To find a `OBX` segment or value inside a `Message` by its identifier, use `get_obx` and `get_obx_value` methods:
 
 ```python
 >>> obx = h.get_obx('DIA')
