@@ -90,7 +90,7 @@ class MessageTestCase(unittest.TestCase):
             obx = self.message.get_obx(identifier)
             obx_value = self.message.get_obx_value(identifier)
 
-            self.assertEqual(obx_value, expected[1])
+            self.assertEqual(obx_value, expected[2])
             self.assertEqual((
                 obx.value_type, 
                 obx.identifier, 
