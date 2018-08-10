@@ -295,3 +295,24 @@ class Message(Container):
 
     def _getitem(self, elem):
         return self._getitem_class().create(elem)
+    
+    def get_obx(self, identifier):
+        """
+        Returns an OBX instance in the message which identifier 
+        matches to the `identifier` argument
+        """
+        try:
+            return  next(filter(
+                lambda obx: str(obx.identifier) == str(identifier), 
+                self['OBX']
+            ))
+        except StopIteration:
+            return None      
+
+    def get_obx_value(self, identifier):
+        """
+        Returns the value of an OBX segment in the message 
+        which identifier matches to the `identifier` argument
+        """
+        obx = self.get_obx(identifier)
+        return obx.value if obx else None
