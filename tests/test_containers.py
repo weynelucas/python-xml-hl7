@@ -41,6 +41,7 @@ class ContainerTestCase(unittest.TestCase):
 class MessageTestCase(unittest.TestCase):
     def setUp(self):
         self.message = containers.Message(HL7_MESSAGE)
+        self.obx_identifiers = [obx_tuple[1] for obx_tuple in EXPECTED_VALUES['OBX']]
 
     def test_items(self):
         items = list(self.message)
@@ -75,6 +76,29 @@ class MessageTestCase(unittest.TestCase):
         self.assertEqual(len(pv1), 1)
         self.assertEqual(len(obr), 1)
         self.assertEqual(len(obx), len(EXPECTED_VALUES['OBX']))
+    
+    def test_get_obx(self):
+        # Invalid identifiers
+        self.assertIsNone(self.message.get_obx('INVALID_IDENTIFIER'))
+        self.assertIsNone(self.message.get_obx_value('INVALID_IDENTIFIER'))
+
+        # Valid identifiers
+        for i in range(len(self.obx_identifiers)):
+            identifier = self.obx_identifiers[i]
+            expected = EXPECTED_VALUES['OBX'][i]
+            
+            obx = self.message.get_obx(identifier)
+            obx_value = self.message.get_obx_value(identifier)
+
+            self.assertEqual(obx_value, expected[1])
+            self.assertEqual((
+                obx.value_type, 
+                obx.identifier, 
+                obx.value, 
+                obx.units, 
+                obx.reference_range, 
+                obx.datetime
+            ), expected)
 
 
 class SegmentTestCase(unittest.TestCase):
