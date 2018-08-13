@@ -199,3 +199,4 @@ OK
 ## Release Notes
 
 * 1.0.0 - First release
+* 1.1.0 - Find `OBX` segments with `get_obx` and `get_obx_value`
