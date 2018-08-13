@@ -182,7 +182,7 @@ cd python-xml-hl7
 python -m unittest tests
 ```
 
-If all the tests pass you will see a success message like this
+If all the tests pass you will see a success message like this:
 ```
 ................
 ----------------------------------------------------------------------
