@@ -91,7 +91,7 @@ A `Segment` instance wraps a serie of `Field` objects, you can iterate over them
 '62'
 ```
 
-There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and `OBX`. Each of them has helper methods to retrieve data from its respective HL7 segment without iterate over his `Field` objects.
+There are different types of `Segment`, they are: `MSH`, `PID`, `PV1`, `OBR` and `OBX`. Each of them has helper methods to retrieve data from its respective HL7 segment without iterate over his `Field` objects
 
 #### MSH
 
@@ -148,8 +148,21 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 ('DIA', 'NM', 85, 'mmHg', (50, 90), datetime.datetime(2018, 7, 3, 11, 17, 13))
 ```
 
+To find a `OBX` segment or value inside a `Message` by its identifier, use `get_obx` and `get_obx_value` methods:
+
+```python
+>>> obx = h.get_obx('DIA')
+<hl7.xml.containers.OBX at 0x52cbd30>
+
+>>> obx.value
+85
+
+>>> h.get_obx_value('SP02')
+96
+```
+
 ## Network client
-`python-xml-hl7` provides a simple network (TCP/IP) client, wich reads HL7 messages from [Alfamed](http://www.alfamed.com/) patient monitors like [VITA 200e](http://www.alfamed.com/monitor-multiparametro-vita-200.html).
+`python-xml-hl7` provides a simple network (TCP/IP) client, wich reads HL7 messages from [Alfamed](http://www.alfamed.com/) patient monitors like [VITA 200e](http://www.alfamed.com/monitor-multiparametro-vita-200.html)
 
 ```python
 from hl7.xml.client import AlfamedClient
@@ -169,7 +182,7 @@ cd python-xml-hl7
 python -m unittest tests
 ```
 
-If all the tests pass you will see a success message like this
+If all the tests pass you will see a success message like this:
 ```
 ................
 ----------------------------------------------------------------------
@@ -186,3 +199,4 @@ OK
 ## Release Notes
 
 * 1.0.0 - First release
+* 1.1.0 - Find `OBX` segments with `get_obx` and `get_obx_value`
