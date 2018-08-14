@@ -26,6 +26,13 @@ class AlfamedClient(object):
         except socket.gaierror:
             raise AttributeError('Invalid address')
     
+    def __repr__(self):
+        return '<%s: %s:%s>' % (
+            self.__class__.__name__, 
+            self.addrinfo[-1][0], 
+            self.addrinfo[-1][-1]
+        )
+    
     def connect(self):
         if not self.connected:
             self.socket= socket.socket(*self.addrinfo[:3])
