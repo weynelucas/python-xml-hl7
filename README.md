@@ -143,7 +143,7 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 
 #### OBX
 ```python
->>> obx = h['OBX'][3] # 3rd OBX instance
+>>> obx = h['OBX'][3] # 4th OBX instance
 >>> (obx.identifier,
      obx.value_type,
      obx.value,
