@@ -43,7 +43,7 @@ class Container(object):
         except (AttributeError, TypeError):
             display = None
         
-        classname = self.__class__.__name__
+        classname = '%s.%s' % (self.__module__, self.__class__.__qualname__)
 
         return '<%s: %s>' % (classname, display) if display else '<%s>' % (classname)
     
@@ -151,7 +151,7 @@ class MSH(Segment):
     """
     Representation of an HL7 MSH segment
     """
-    display_property = 'sending_application'
+    display_property = None
 
     @property
     @segment_field('MSH.1')
@@ -187,7 +187,7 @@ class PID(Segment):
     """
     Representation of an HL7 PID segment
     """
-    display_property = 'id'
+    display_property = None
 
     @property
     @segment_field('PID.2')
@@ -219,7 +219,7 @@ class PV1(Segment):
     """
     Representation of an HL7 PV1 segment
     """
-    display_property = 'patient_class'
+    display_property = None
 
     @property
     @segment_field('PV1.2')
@@ -257,7 +257,7 @@ class OBR(Segment):
     """
     Representation of an HL7 OBR segment
     """
-    display_property = 'datetime'
+    display_property = None
 
     @property
     @segment_field('OBR.7', datatype='TS')
