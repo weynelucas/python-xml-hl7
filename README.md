@@ -198,7 +198,8 @@ OK
 
 ## Notes
 
-* For any suggestion, feature or bug fix, you can report a issue [here](https://github.com/weynelucas/python-xml-hl7/issues). Or submit a pull request
+* Specification for XML encoding rules of HL7 v2 messages can be found [here](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=83)
+* For any suggestion, feature or bug fix, you can report an issue [here](https://github.com/weynelucas/python-xml-hl7/issues). Or submit a pull request
 * For handle HL7 messages in original stream format, use solutions like [python-hl7](http://python-hl7.readthedocs.io/en/latest/) or [HL7apy](http://hl7apy.org/)
 
 ## Release Notes
