@@ -51,38 +51,38 @@ This command returns a `Message` instance, wrapping a series of `Segment` object
 
 ```python
 >>> list(h)
-[<hl7.xml.containers.MSH at 0x52cb668>,
- <hl7.xml.containers.PID at 0x52cb6d8>,
- <hl7.xml.containers.PV1 at 0x52cb828>,
- <hl7.xml.containers.OBR at 0x52cb860>,
- <hl7.xml.containers.OBX at 0x52cb898>,
- <hl7.xml.containers.OBX at 0x52cb8d0>,
- <hl7.xml.containers.OBX at 0x52cb908>,
- <hl7.xml.containers.OBX at 0x52cb940>,
- <hl7.xml.containers.OBX at 0x52cb978>,
- <hl7.xml.containers.OBX at 0x52cb9b0>]
+[<hl7.xml.containers.MSH>,
+ <hl7.xml.containers.PID>,
+ <hl7.xml.containers.PV1>,
+ <hl7.xml.containers.OBR>,
+ <hl7.xml.containers.OBX: SPO2>,
+ <hl7.xml.containers.OBX: PR>,
+ <hl7.xml.containers.OBX: SYS>,
+ <hl7.xml.containers.OBX: DIA>,
+ <hl7.xml.containers.OBX: MAP>,
+ <hl7.xml.containers.OBX: NIBP_PR>]
 
 >>> h[0]
-<hl7.xml.containers.MSH at 0x52d2080>
+<hl7.xml.containers.MSH>
 
 >>> h['OBX']
-[<hl7.xml.containers.OBX at 0x52cbd30>,
- <hl7.xml.containers.OBX at 0x5265400>,
- <hl7.xml.containers.OBX at 0x5265668>,
- <hl7.xml.containers.OBX at 0x52655c0>,
- <hl7.xml.containers.OBX at 0x5265588>,
- <hl7.xml.containers.OBX at 0x52653c8>]
+[<hl7.xml.containers.OBX: SPO2>,
+ <hl7.xml.containers.OBX: PR>,
+ <hl7.xml.containers.OBX: SYS>,
+ <hl7.xml.containers.OBX: DIA>,
+ <hl7.xml.containers.OBX: MAP>,
+ <hl7.xml.containers.OBX: NIBP_PR>]
 ```
 
 A `Segment` instance wraps a serie of `Field` objects, you can iterate over them:
 
 ```python
 >>> list(h[5])
-[<hl7.xml.containers.Field at 0x502b208>,
- <hl7.xml.containers.Field at 0x502b198>,
- <hl7.xml.containers.Field at 0x502b240>,
- <hl7.xml.containers.Field at 0x502b048>,
- <hl7.xml.containers.Field at 0x502b940>]
+[<hl7.xml.containers.Field: OBX.2>,
+ <hl7.xml.containers.Field: OBX.3>,
+ <hl7.xml.containers.Field: OBX.5>,
+ <hl7.xml.containers.Field: OBX.6>,
+ <hl7.xml.containers.Field: OBX.7>]
 
 >>> h[5][0].value
 'NM'
@@ -151,13 +151,13 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 To find a `OBX` segment or value inside a `Message` by its identifier, use `get_obx` and `get_obx_value` methods:
 
 ```python
->>> obx = h.get_obx('DIA')
-<hl7.xml.containers.OBX at 0x52cbd30>
+>>> h.get_obx('DIA')
+<hl7.xml.containers.OBX>
 
->>> obx.value
+>>> h.get_obx('DIA').value
 85
 
->>> h.get_obx_value('SP02')
+>>> h.get_obx_value('SPO2')
 96
 ```
 
