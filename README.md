@@ -50,7 +50,7 @@ h = parse(message)
 This command returns a `Message` instance, wrapping a series of `Segment` objects. Is possible iterate over segments or match for specific ones:
 
 ```python
->>> list(h) # List all segments of the message
+>>> list(h) # List all message segments
 [<hl7.xml.containers.MSH>,
  <hl7.xml.containers.PID>,
  <hl7.xml.containers.PV1>,
@@ -62,7 +62,7 @@ This command returns a `Message` instance, wrapping a series of `Segment` object
  <hl7.xml.containers.OBX: MAP>,
  <hl7.xml.containers.OBX: NIBP_PR>]
 
->>> h[0]  # Get 1st segment
+>>> h[0]  # Get 1st message segment
 <hl7.xml.containers.MSH>
 
 >>> h['OBX'] # Find all OBX segments
@@ -77,12 +77,12 @@ This command returns a `Message` instance, wrapping a series of `Segment` object
 A `Segment` instance wraps a serie of `Field` objects, you can iterate over them:
 
 ```python
->>> list(h[2]) # List all fields of the 3rd segment (PV1)
+>>> list(h[2]) # List all fields for 3rd message segment (PV1)
 [<hl7.xml.containers.Field: PV1.2>,
  <hl7.xml.containers.Field: PV1.18>,
  <hl7.xml.containers.Field: PV1.44>]
 
->>> list(h[5]) # List all fields of the 6th segment (OBX)
+>>> list(h[5]) # List all fields for 6th message segment (OBX)
 [<hl7.xml.containers.Field: OBX.2>,
  <hl7.xml.containers.Field: OBX.3>,
  <hl7.xml.containers.Field: OBX.5>,
