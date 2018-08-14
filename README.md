@@ -152,7 +152,7 @@ To find a `OBX` segment or value inside a `Message` by its identifier, use `get_
 
 ```python
 >>> h.get_obx('DIA')
-<hl7.xml.containers.OBX>
+<hl7.xml.containers.OBX: DIA>
 
 >>> h.get_obx('DIA').value
 85
