@@ -47,7 +47,7 @@ from hl7.xml import parse
 h = parse(message)
 ```
 
-This command returns a `Message` instance, wrapping a series of `Segment` objects. Is possible iterate over segments or match for specific segments:
+This command returns a `Message` instance, wrapping a series of `Segment` objects. Is possible iterate over segments or match for specific ones:
 
 ```python
 >>> list(h)
