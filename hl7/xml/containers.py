@@ -32,9 +32,20 @@ class Container(object):
     """
     item_class = None
     unique_items = False
+    display_property = 'name'
     
     def __init__(self, content):
         self.etree = content
+    
+    def __repr__(self):
+        try:
+            display = getattr(self, self.display_property)
+        except (AttributeError, TypeError):
+            display = None
+        
+        classname = self.__class__.__name__
+
+        return '<%s: %s>' % (classname, display) if display else '<%s>' % (classname)
     
     @property
     def name(self):
@@ -140,6 +151,8 @@ class MSH(Segment):
     """
     Representation of an HL7 MSH segment
     """
+    display_property = 'sending_application'
+
     @property
     @segment_field('MSH.1')
     def field_separator(self):
@@ -174,6 +187,8 @@ class PID(Segment):
     """
     Representation of an HL7 PID segment
     """
+    display_property = 'id'
+
     @property
     @segment_field('PID.2')
     def id(self):
@@ -204,6 +219,8 @@ class PV1(Segment):
     """
     Representation of an HL7 PV1 segment
     """
+    display_property = 'patient_class'
+
     @property
     @segment_field('PV1.2')
     def patient_class(self):
@@ -240,6 +257,8 @@ class OBR(Segment):
     """
     Representation of an HL7 OBR segment
     """
+    display_property = 'datetime'
+
     @property
     @segment_field('OBR.7', datatype='TS')
     def datetime(self):
@@ -250,6 +269,8 @@ class OBX(Segment):
     """
     Representation of an HL7 OBX segment
     """
+    display_property = 'identifier'
+
     @property
     @segment_field('OBX.2')
     def value_type(self):
