@@ -184,9 +184,9 @@ python -m unittest tests
 
 If all the tests pass you will see a success message like this:
 ```
-................
+.................
 ----------------------------------------------------------------------
-Ran 16 tests in 0.007s
+Ran 17 tests in 0.007s
 
 OK
 ```
@@ -200,3 +200,4 @@ OK
 
 * 1.0.0 - First release
 * 1.1.0 - Find `OBX` segments with `get_obx` and `get_obx_value`
+* 1.2.0 - String representation for client and container objects
