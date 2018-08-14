@@ -47,42 +47,47 @@ from hl7.xml import parse
 h = parse(message)
 ```
 
-This command returns a `Message` instance, wrapping a series of `Segment` objects. Is possible iterate over segments or match for specific segments:
+This command returns a `Message` instance, wrapping a series of `Segment` objects. Is possible iterate over segments or match for specific ones:
 
 ```python
->>> list(h)
-[<hl7.xml.containers.MSH at 0x52cb668>,
- <hl7.xml.containers.PID at 0x52cb6d8>,
- <hl7.xml.containers.PV1 at 0x52cb828>,
- <hl7.xml.containers.OBR at 0x52cb860>,
- <hl7.xml.containers.OBX at 0x52cb898>,
- <hl7.xml.containers.OBX at 0x52cb8d0>,
- <hl7.xml.containers.OBX at 0x52cb908>,
- <hl7.xml.containers.OBX at 0x52cb940>,
- <hl7.xml.containers.OBX at 0x52cb978>,
- <hl7.xml.containers.OBX at 0x52cb9b0>]
+>>> list(h) # List all message segments
+[<hl7.xml.containers.MSH>,
+ <hl7.xml.containers.PID>,
+ <hl7.xml.containers.PV1>,
+ <hl7.xml.containers.OBR>,
+ <hl7.xml.containers.OBX: SPO2>,
+ <hl7.xml.containers.OBX: PR>,
+ <hl7.xml.containers.OBX: SYS>,
+ <hl7.xml.containers.OBX: DIA>,
+ <hl7.xml.containers.OBX: MAP>,
+ <hl7.xml.containers.OBX: NIBP_PR>]
 
->>> h[0]
-<hl7.xml.containers.MSH at 0x52d2080>
+>>> h[0]  # Get 1st message segment
+<hl7.xml.containers.MSH>
 
->>> h['OBX']
-[<hl7.xml.containers.OBX at 0x52cbd30>,
- <hl7.xml.containers.OBX at 0x5265400>,
- <hl7.xml.containers.OBX at 0x5265668>,
- <hl7.xml.containers.OBX at 0x52655c0>,
- <hl7.xml.containers.OBX at 0x5265588>,
- <hl7.xml.containers.OBX at 0x52653c8>]
+>>> h['OBX'] # Find all OBX segments
+[<hl7.xml.containers.OBX: SPO2>,
+ <hl7.xml.containers.OBX: PR>,
+ <hl7.xml.containers.OBX: SYS>,
+ <hl7.xml.containers.OBX: DIA>,
+ <hl7.xml.containers.OBX: MAP>,
+ <hl7.xml.containers.OBX: NIBP_PR>]
 ```
 
 A `Segment` instance wraps a serie of `Field` objects, you can iterate over them:
 
 ```python
->>> list(h[5])
-[<hl7.xml.containers.Field at 0x502b208>,
- <hl7.xml.containers.Field at 0x502b198>,
- <hl7.xml.containers.Field at 0x502b240>,
- <hl7.xml.containers.Field at 0x502b048>,
- <hl7.xml.containers.Field at 0x502b940>]
+>>> list(h[2]) # List all fields for 3rd message segment (PV1)
+[<hl7.xml.containers.Field: PV1.2>,
+ <hl7.xml.containers.Field: PV1.18>,
+ <hl7.xml.containers.Field: PV1.44>]
+
+>>> list(h[5]) # List all fields for 6th message segment (OBX)
+[<hl7.xml.containers.Field: OBX.2>,
+ <hl7.xml.containers.Field: OBX.3>,
+ <hl7.xml.containers.Field: OBX.5>,
+ <hl7.xml.containers.Field: OBX.6>,
+ <hl7.xml.containers.Field: OBX.7>]
 
 >>> h[5][0].value
 'NM'
@@ -138,7 +143,7 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 
 #### OBX
 ```python
->>> obx = h['OBX'][3] # 3rd instance
+>>> obx = h['OBX'][3] # 4th OBX instance
 >>> (obx.identifier,
      obx.value_type,
      obx.value,
@@ -151,13 +156,13 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 To find a `OBX` segment or value inside a `Message` by its identifier, use `get_obx` and `get_obx_value` methods:
 
 ```python
->>> obx = h.get_obx('DIA')
-<hl7.xml.containers.OBX at 0x52cbd30>
+>>> h.get_obx('DIA')
+<hl7.xml.containers.OBX: DIA>
 
->>> obx.value
+>>> h.get_obx('DIA').value
 85
 
->>> h.get_obx_value('SP02')
+>>> h.get_obx_value('SPO2')
 96
 ```
 
@@ -184,19 +189,21 @@ python -m unittest tests
 
 If all the tests pass you will see a success message like this:
 ```
-................
+.................
 ----------------------------------------------------------------------
-Ran 16 tests in 0.007s
+Ran 17 tests in 0.007s
 
 OK
 ```
 
 ## Notes
 
-* For any suggestion, feature or bug fix, you can report a issue [here](https://github.com/weynelucas/python-xml-hl7/issues). Or submit a pull request
+* Specification for XML encoding rules of HL7 v2 messages can be found [here](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=83)
+* For any suggestion, feature or bug fix, you can report an issue [here](https://github.com/weynelucas/python-xml-hl7/issues). Or submit a pull request
 * For handle HL7 messages in original stream format, use solutions like [python-hl7](http://python-hl7.readthedocs.io/en/latest/) or [HL7apy](http://hl7apy.org/)
 
 ## Release Notes
 
 * 1.0.0 - First release
 * 1.1.0 - Find `OBX` segments with `get_obx` and `get_obx_value`
+* 1.2.0 - String representation for client and container objects
