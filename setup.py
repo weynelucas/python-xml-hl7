@@ -6,7 +6,7 @@ with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 
-version = '1.1.0'
+version = '1.2.0'
 repository = 'https://github.com/weynelucas/python-xml-hl7'
 
 setup(

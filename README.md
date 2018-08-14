@@ -47,10 +47,10 @@ from hl7.xml import parse
 h = parse(message)
 ```
 
-This command returns a `Message` instance, wrapping a series of `Segment` objects. Is possible iterate over segments or match for specific segments:
+This command returns a `Message` instance, wrapping a series of `Segment` objects. Is possible iterate over segments or match for specific ones:
 
 ```python
->>> list(h)
+>>> list(h) # List all message segments
 [<hl7.xml.containers.MSH>,
  <hl7.xml.containers.PID>,
  <hl7.xml.containers.PV1>,
@@ -62,10 +62,10 @@ This command returns a `Message` instance, wrapping a series of `Segment` object
  <hl7.xml.containers.OBX: MAP>,
  <hl7.xml.containers.OBX: NIBP_PR>]
 
->>> h[0]
+>>> h[0]  # Get 1st message segment
 <hl7.xml.containers.MSH>
 
->>> h['OBX']
+>>> h['OBX'] # Find all OBX segments
 [<hl7.xml.containers.OBX: SPO2>,
  <hl7.xml.containers.OBX: PR>,
  <hl7.xml.containers.OBX: SYS>,
@@ -77,7 +77,12 @@ This command returns a `Message` instance, wrapping a series of `Segment` object
 A `Segment` instance wraps a serie of `Field` objects, you can iterate over them:
 
 ```python
->>> list(h[5])
+>>> list(h[2]) # List all fields for 3rd message segment (PV1)
+[<hl7.xml.containers.Field: PV1.2>,
+ <hl7.xml.containers.Field: PV1.18>,
+ <hl7.xml.containers.Field: PV1.44>]
+
+>>> list(h[5]) # List all fields for 6th message segment (OBX)
 [<hl7.xml.containers.Field: OBX.2>,
  <hl7.xml.containers.Field: OBX.3>,
  <hl7.xml.containers.Field: OBX.5>,
@@ -138,7 +143,7 @@ datetime.datetime(2018, 7, 3, 11, 17, 43)
 
 #### OBX
 ```python
->>> obx = h['OBX'][3] # 3rd instance
+>>> obx = h['OBX'][3] # 4th OBX instance
 >>> (obx.identifier,
      obx.value_type,
      obx.value,
@@ -184,19 +189,21 @@ python -m unittest tests
 
 If all the tests pass you will see a success message like this:
 ```
-................
+.................
 ----------------------------------------------------------------------
-Ran 16 tests in 0.007s
+Ran 17 tests in 0.007s
 
 OK
 ```
 
 ## Notes
 
-* For any suggestion, feature or bug fix, you can report a issue [here](https://github.com/weynelucas/python-xml-hl7/issues). Or submit a pull request
+* Specification for XML encoding rules of HL7 v2 messages can be found [here](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=83)
+* For any suggestion, feature or bug fix, you can report an issue [here](https://github.com/weynelucas/python-xml-hl7/issues). Or submit a pull request
 * For handle HL7 messages in original stream format, use solutions like [python-hl7](http://python-hl7.readthedocs.io/en/latest/) or [HL7apy](http://hl7apy.org/)
 
 ## Release Notes
 
 * 1.0.0 - First release
 * 1.1.0 - Find `OBX` segments with `get_obx` and `get_obx_value`
+* 1.2.0 - String representation for client and container objects
