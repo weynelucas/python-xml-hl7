@@ -207,3 +207,4 @@ OK
 * 1.0.0 - First release
 * 1.1.0 - Find `OBX` segments with `get_obx` and `get_obx_value`
 * 1.2.0 - String representation for client and container objects
+* 1.3.0 - Add Travis and Codecov support
