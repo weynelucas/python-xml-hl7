@@ -1,9 +1,16 @@
 language: python
 python:
-  - 3.6
+- 3.6
 install:
-  - pip install codecov
+- pip install codecov
 script:
-  - python -m unittest tests
-  - coverage run --source='.' -m unittest tests
-  - codecov --token=$CODECOV
+- python -m unittest tests
+- coverage run --source='.' -m unittest tests
+- codecov --token=$CODECOV
+deploy:
+  provider: pypi
+  user: weynelucas
+  password:
+    secure: Yk91GSyDLq73sovpzj1l/KfoUsvpuAgeOs70kbgmnPtpjlzbAXZ+C9LFONXoAwFlCn0CA4or+A8C0inyjUPHQEkoDPbDJH7xQLgl1fRWhj1TvYhJhYkVADlqMi1tsOg5Hsg+j9JTgQlMmqQktWYz0F3juRDpHV5TLFsJyF9wbgB8gIoG7zAJe6Ro4i7cuc6zqIhdO3O5W4o2s33n1yYj84U3+eSJkcfa+8GCziu6rtVz5aQD9imTSs1NNRoIZ4RdCZXU9tmFOAwRND0ynvGLzZPifkUN41L/xGlW7fnc13ouPIzPyLNqHnDBRZJ4u47L+3oTwa86AxugRPUM26Qv2N2ofGfh9gX28Srg61Om6SqN86AC4Pj2mrIS4/3IvzVjwQ/ee+hWWUZBxGNzvi0TX/Sc+tBJyUG+bLVk+zdjts5qi4gIxizQU0bQbMVJNVPKz/E8GtuASSb3KiHsAAQ8EZjuttzgvZYWVSmHrdsyr1//F9LtmZiSegO4pJY74g3jJ/5W3PFG3DrItV1VP7+WZSk7WP9dbH2yan8mMAnJUrhE6cwbCP5AuAB6MHYHBjtPNUP3/0do8mFTBCXaxJjhyLJst72jVcKV82mlKyyNv2ElW9K1bnvZXc/hzptgUx6e9VV8E29fickTmGQ3V4KH1BjhBCktNwN19lMHXNFajYc=
+  on:
+    tags: true
