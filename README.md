@@ -1,4 +1,4 @@
-[![PyPi version](https://img.shields.io/pypi/v/python-xml-hl7.svg)](https://pypi.python.org/pypi/python-xml-hl7)
+[![PyPi version](https://img.shields.io/pypi/v/python-xml-hl7.svg)](https://pypi.python.org/pypi/python-xml-hl7) [![Build Status](https://travis-ci.org/weynelucas/python-xml-hl7.svg?branch=master)](https://travis-ci.org/weynelucas/python-xml-hl7) [![codecov](https://codecov.io/gh/weynelucas/python-xml-hl7/branch/master/graph/badge.svg)](https://codecov.io/gh/weynelucas/python-xml-hl7)
 
 # python-xml-hl7
 A library for parsing HL7 (version 2.x) messages in XML format into Python objects
