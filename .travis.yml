@@ -1,12 +1,28 @@
 language: python
 python:
-- 3.6
+  - 3.6
+  
+# for codecoverage on codeclimate.com
+env:
+  global:
+    - CC_TEST_REPORTER_ID=$CC_TEST_REPORTER_ID
+    
+# command to install dependencies
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
 install:
-- pip install codecov
+  - pip install codecov
+
+# command to run tests
 script:
-- python -m unittest tests
-- coverage run --source='.' -m unittest tests
-- codecov --token=$CODECOV
+  - python -m unittest tests
+  - coverage run --source='.' -m unittest tests
+  - codecov --token=$CODECOV
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  
+# deploy package on pypi
 deploy:
   provider: pypi
   user: weynelucas
